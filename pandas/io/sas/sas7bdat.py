@@ -566,6 +566,9 @@ class SAS7BDATReader(BaseIterator):
         self.column_formats.append(column_format)
         self.columns.append(col)
 
+    def __next__(self):
+        return self.read(nrows=self.chunksize or 1)
+
     def read(self, nrows=None):
 
         if (nrows is None) and (self.chunksize is not None):
